@@ -3,6 +3,7 @@ import csv
 import smtplib
 import os
 import shopDB as sd
+import itemDB as idb
 
 app = Flask(__name__, static_url_path='')
 app.secret_key = 'this is a secret key'
@@ -60,30 +61,125 @@ def regShop():
 
 @app.route("/updateDetails", methods=["POST"])
 def updateDetails():
-    target = APP_ROOT + '/static/images'
-    shopname = request.form.get("shopname")
-    owner = request.form.get("owner")
-    email = session['email']
-    address = request.form.get("address")
-    password = request.form.get("password")
-    imgfile = request.files.get("img")
-    password2 = sd.getPassword(email)
+    if 'email' in session:
+        target = APP_ROOT + '/static/images'
+        shopname = request.form.get("shopname")
+        owner = request.form.get("owner")
+        email = session['email']
+        address = request.form.get("address")
+        password = request.form.get("password")
+        imgfile = request.files.get("img")
+        password2 = sd.getPassword(email)
 
-    if(imgfile):
-        img = imgfile.filename
-        destination = "/".join([target,img])
-        imgfile.save(destination)
+        if(imgfile):
+            img = imgfile.filename
+            destination = "/".join([target,img])
+            imgfile.save(destination)
+        else:
+            img = sd.getImage(email)
+
+        sd.updateInfo(shopname,owner,email,address,password,img)
+
+        if(password == password2):
+            return redirect(url_for('index'))
+        else:
+            flash("Changed \"Password\".. \nLogin again with \"Updated Password\"..")
+            return redirect(url_for('login'))
     else:
-        img = sd.getImage(email)
-
-    sd.updateInfo(shopname,owner,email,address,password,img)
-
-    if(password == password2):
-        return redirect(url_for('index'))
-    else:
-        flash("Changed \"Password\".. \nLogin again with \"Updated Password\"..")
         return redirect(url_for('login'))
 
+@app.route('/items')
+def items():
+    if 'email' in session:
+        item = idb.getItems(session['email'])
+        return render_template('items.html',item=item)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/item/<int:pid>')
+def item(pid):
+    if 'email' in session:
+        pitem = idb.getItem(session['email'],pid)
+        if(len(pitem)):
+            return render_template('item.html',pitem=pitem)
+        else:
+            return render_template('notfound.html')
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/item/<int:pid>/update')
+def update(pid):
+    if 'email' in session:
+        item = idb.getItem(session['email'],pid)
+        return render_template('updateitem.html',item=item)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/item/<int:pid>/updateItem', methods=["POST"])
+def updateItem(pid):
+    if 'email' in session:
+        target = APP_ROOT + '/static/images/productImages'
+        email = session['email']
+        itemname = request.form.get("itemname")
+        itemdesc = request.form.get("itemdesc")
+        units = request.form.get("units")
+        mrp = request.form.get("mrp")
+        awaycost = request.form.get("awaycost")
+        awaypktcost = request.form.get("awaypktcost")
+        localcost = request.form.get("localcost")
+        localpktcost = request.form.get("localpktcost")
+        date = request.form.get("date")
+        imgfile = request.files.get("img")
+
+        if(imgfile):
+            img = imgfile.filename
+            destination = "/".join([target,img])
+            imgfile.save(destination)
+        else:
+            img = idb.getImage(pid)
+        
+        idb.updateItem(email,itemname,itemdesc,units,mrp,awaycost,awaypktcost,localcost,localpktcost,date,img,pid)
+
+        return redirect(url_for('item',pid=pid))
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/additems')
+def additems():
+    if 'email' in session:
+        return render_template('additem.html')
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/additem', methods=["POST"])
+def additem():
+    if 'email' in session:
+        target = APP_ROOT + '/static/images/productImages'
+        email = session['email']
+        itemname = request.form.get("itemname")
+        itemdesc = request.form.get("itemdesc")
+        units = request.form.get("units")
+        mrp = request.form.get("mrp")
+        awaycost = request.form.get("awaycost")
+        awaypktcost = request.form.get("awaypktcost")
+        localcost = request.form.get("localcost")
+        localpktcost = request.form.get("localpktcost")
+        date = request.form.get("date")
+        imgfile = request.files.get("img")
+
+        if(imgfile):
+            img = imgfile.filename
+            destination = "/".join([target,img])
+            imgfile.save(destination)
+        else:
+            img = 'defaultItem.png'
+        
+        idb.enterItem(email,itemname,itemdesc,units,mrp,awaycost,awaypktcost,localcost,localpktcost,date,img)
+        flash("New Item Successfully Added !")
+
+        return redirect(url_for('items'))
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():

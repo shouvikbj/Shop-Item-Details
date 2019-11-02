@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <title>Items List</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        #flash{
+            color: green;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        #heading-text{
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-weight: bold;
+            color: rgba(0, 0, 255, 0.664);
+            font-size: 150%;
+        }
+        #scroll-top{
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            z-index: 99;
+            font-size: 110%;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 255, 0.424);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+        #add-item{
+            position: fixed;
+            bottom: 20px;
+            right: 15px;
+            z-index: 99;
+            font-size: 110%;
+            border: none;
+            outline: none;
+            background-color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+        #item-body{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.418);
+            width: 95%;
+            padding: 10px;
+            background-color: rgba(137, 43, 226, 0.123);
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#scroll-top").hide();
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 0) {
+                    $('#scroll-top').fadeIn();
+                } else {
+                    $('#scroll-top').fadeOut();
+                }
+            });
+        });
+    </script>
+</head>
+<body align="center">
+    <div id="to-top"></div>
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4"><br></div>
+            <div class="col-lg-4 col-md-4 col-sm-4" id="form-content">
+                <div class="container-fluid" style="margin: -10px;" id="back-btn">
+                    <a href="{{ url_for('index') }}"><input type="button" value="<- Home" style="width: 100%;background-color: white;border: none;color: rgb(74, 121, 0);font-weight: bold;"></a>
+                </div>
+                <hr>
+                <div id="flash">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <div id="heading">
+                    <h4 id="heading-text">Product Stocks</h4>
+                </div>
+                <hr>
+                {% if (item|length) %}
+                    {% for i in range(item|length) | reverse %}
+                    <div align="center">
+                        <div class="row" id="item-body">
+                            <div class="col-xs-8">
+                                <h4 style="color: rgba(0, 0, 0, 0.637);">{{ item[i][2] }}</h4>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="/item/{{ item[i][0] }}"><h4 style="color: cornflowerblue;">view</h4></a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div>
+                        <br><br><br>
+                        <h4 style="color: rgba(106, 101, 136, 0.376);font-size: 150%;">No item listed till now !!</h4>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+
+        </div>
+        <br><br>
+
+    </div>
+    <br>
+
+
+
+    <button id="add-item"><a href="/additems"><i class="fa fa-plus-circle" style="font-size:40px;color: rgba(10, 0, 143, 0.609);"></i></a></button>
+    <button id="scroll-top"><a href="#to-top"><i class="fas fa-arrow-up" style="font-size:24px;color: rgb(255, 251, 0);"></i></a></button>
+    <script src="/app.js"></script>
+</body>
+</html>

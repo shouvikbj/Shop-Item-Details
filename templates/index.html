@@ -176,7 +176,7 @@
                     <h4><a href="/logout" style="color: rgba(255, 0, 0, 0.657); font-weight: bold;">Logout</a></h4>
                 </div>
                 <div class="col-xs-6">
-                    <h4><a href="#" style="color: rgba(0, 128, 0, 0.657); font-weight: bold;">Item List</a></h4>
+                    <h4><a href="/items" style="color: rgba(0, 128, 0, 0.657); font-weight: bold;">Item List</a></h4>
                 </div>
             </div>
         </div>
@@ -203,7 +203,7 @@
         <div class="container" id="updatediv">
             {% for i in range(shop|length) %}
                 <div class="container" align="center">
-                    <h3 style="font-weight: bold; color: rgba(0, 128, 0, 0.753);">Update Information</h3><hr>
+                    <h3 style="font-weight: bold; color: rgba(0, 128, 0, 0.753); margin-top: -6px;">Update Information</h3><hr>
                     <form action="/updateDetails" method="post" enctype="multipart/form-data">
                         <h4 style="font-size: 150%;color: cornflowerblue;">Shop Name</h4>
                         <input type="text" name="shopname" value="{{ shop[i][0] }}"><br>
