@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <title>Admin-login</title>
+    <!--<script>
+        if (location.hostname === 'soumenbj.pythonanywhere.com' && location.protocol !== 'https:') {
+            location.href = location.href.replace('http:','https:')
+        }
+    </script>-->
+    <style>
+        #heading-text{
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-weight: bold;
+            color: rgba(0, 0, 255, 0.664);
+            font-size: 200%;
+        }
+        #shopname,select{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            text-align: center;
+            border-bottom: 2px solid rgba(112, 128, 144, 0.219);
+            height: 40px;
+            width: 80%;
+        }
+        #owner,select{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            text-align: center;
+            border-bottom: 2px solid rgba(112, 128, 144, 0.219);
+            height: 40px;
+            width: 80%;
+        }
+        #email,select{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            text-align: center;
+            border-bottom: 2px solid rgba(112, 128, 144, 0.219);
+            height: 40px;
+            width: 80%;
+        }
+        #address,select{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            text-align: center;
+            border-bottom: 2px solid rgba(112, 128, 144, 0.219);
+            height: 40px;
+            width: 80%;
+        }
+        #password,select{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            text-align: center;
+            border-bottom: 2px solid rgba(112, 128, 144, 0.219);
+            height: 40px;
+            width: 80%;
+        }
+        input[type=file]{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            text-align: center;
+            border-bottom: 2px solid rgba(112, 128, 144, 0.219);
+            width: 80%;
+        }
+        #submit-btn{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            background-color: rgba(0, 0, 255, 0.493);
+            color: white;
+            font-weight: bold;
+            height: 40px;
+            width: 80%;
+        }
+        #reset-btn{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            background-color: rgba(255, 0, 0, 0.493);
+            color: white;
+            font-weight: bold;
+            height: 40px;
+            width: 80%;
+        }
+    </style>
+
+</head>
+<body align="center">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4"><br></div>
+            <div class="col-lg-4 col-md-4 col-sm-4" id="form-content">
+                <div id="heading">
+                    <h4 id="heading-text">Register Your Shop</h4>
+                    <br>
+                </div>
+                <div id="login-details" align="center">
+                    <form action="/regShop" method="post" enctype="multipart/form-data">
+                        <input type="text" name="shopname" id="shopname" placeholder="Your Shop's Name" required="true"><br><br><br>
+                        <input type="text" name="owner" id="owner" placeholder="Owner Name" required="true"><br><br><br>
+                        <input type="email" name="email" id="email" placeholder="Shop Email" required="true"><br><br><br>
+                        <input type="text" name="address" id="address" placeholder="Shop Location" required="true"><br><br><br>
+                        <input type="password" name="password" id="password" placeholder="password" required="true"><br><br>
+                        <h5 id="desc" style="color: rgba(105, 90, 205, 0.842);">Provide Shop Image</h5>
+                        <p style="color: rgba(0, 128, 0, 0.671);">( not mendatory )</p>
+                        <input id="file-picker" type="file" name="img" accept="image/*"><br><br>
+                        <input type="submit" value="Register  Shop" id="submit-btn"><br><br>
+                        <input type="reset" value="Reset" id="reset-btn">
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+
+        </div>
+        <br>
+        <h5>already have an account? <a href="/login">Login</a></h5>
+        <br><br>
+    </div>
+    <div class="container">
+        <h5 style="color: rgba(0, 0, 0, 0.63);">Developed by</h5>
+        <h5><a href="https://www.facebook.com/shouvikbj">Shouvik Bajpayee</a></h5>
+    </div>
+    <br><br>
+
+    <script src="/app.js"></script>
+</body>
+</html>
