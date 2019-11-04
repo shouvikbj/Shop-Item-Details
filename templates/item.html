@@ -22,7 +22,7 @@
             font-family: "Comic Sans MS", cursive, sans-serif;
             font-weight: bold;
             color: rgba(0, 0, 255, 0.664);
-            font-size: 150%;
+            font-size: 125%;
         }
         #scroll-top{
             position: fixed;
@@ -107,22 +107,22 @@
                         <div class="container" id="pimg-div">
                             <a target="_blank" href="/images/productImages/{{ pitem[0][11] }}"><img src="/images/productImages/{{ pitem[0][11] }}" alt="" id="pimg"></a>
                         </div>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Item Description</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][3] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Product Units Available</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][4] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">MRP (per unit)</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][5] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Single Unit Cost (Kolkata)</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][6] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Full Pkt. Cost (Kolkata)</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][7] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Single Unit Cost (Local)</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][8] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Full Pkt. Cost (Local)</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][9] }}</h5>
-                        <h4 style="color: rgba(105, 90, 205, 0.842);font-size: 150%;">Receive Date</h4>
-                        <h5 style="color: rgba(0, 0, 0, 0.746); font-size: 125%;">{{ pitem[0][10] }}</h5>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Item Description</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][3] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Product Units Available</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][4] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">MRP (per unit)</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][5] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Single Unit Cost (Kolkata)</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][6] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Full Pkt. Cost (Kolkata)</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][7] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Single Unit Cost (Local)</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][8] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Full Pkt. Cost (Local)</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][9] }}</h6>
+                        <h5 style="color: rgba(105, 90, 205, 0.842);font-size: 125%;">Receive Date</h5>
+                        <h6 style="color: rgba(0, 0, 0, 0.746); font-size: 100%;">{{ pitem[0][10] }}</h6>
                     </div>
                     <br><br>
                     <a href="/item/{{ pitem[0][0] }}/update"><input type="button" value="Update Item Details" id="update-details"></a>
@@ -130,7 +130,7 @@
                 {% else %}
                     <div>
                         <br><br><br>
-                        <h4 style="color: rgba(106, 101, 136, 0.376);font-size: 150%;">No item listed till now !!</h4>
+                        <h4 style="color: rgba(106, 101, 136, 0.376);font-size: 125%;">No item listed till now !!</h4>
                     </div>
                 {% endif %}
             </div>
