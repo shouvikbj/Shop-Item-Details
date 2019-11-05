@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "Shop Listings",
-    "short_name": "Shop Listings",
+    "name": "Shop Tracker",
+    "short_name": "Shop Tracker",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#FFFFFF",
@@ -9,32 +9,32 @@
     "orientation": "portrait",
     "icons": [
         {
-            "src": "/pwa_logo/icon-48x48.png",
+            "src": "/images/pwa_logo/icon-48x48.png",
             "type": "image/png",
             "sizes": "48x48"
         },
         {
-            "src": "/pwa_logo/icon-72x72.png",
+            "src": "/images/pwa_logo/icon-72x72.png",
             "type": "image/png",
             "sizes": "72x72"
         },
         {
-            "src": "/pwa_logo/icon-96x96.png",
+            "src": "/images/pwa_logo/icon-96x96.png",
             "type": "image/png",
             "sizes": "96x96"
         },
         {
-            "src": "/pwa_logo/icon-144x144.png",
+            "src": "/images/pwa_logo/icon-144x144.png",
             "type": "image/png",
             "sizes": "144x144"
         },
         {
-            "src": "/pwa_logo/icon-180x180.png",
+            "src": "/images/pwa_logo/icon-144x144.png",
             "type": "image/png",
             "sizes": "196x196"
         },
         {
-            "src": "/pwa_logo/icon-310x310.png",
+            "src": "/images/pwa_logo/icon-144x144.png",
             "type": "image/png",
             "sizes": "512x512"
         }
