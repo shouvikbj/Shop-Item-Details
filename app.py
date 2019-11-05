@@ -1,9 +1,9 @@
 from flask import Flask,render_template,redirect,request,url_for,session,flash
-import csv
-import smtplib
 import os
 import shopDB as sd
 import itemDB as idb
+import werkzeug.contrib.wrappers
+import werkzeug.urls
 
 app = Flask(__name__, static_url_path='')
 app.secret_key = 'this is a secret key'
@@ -189,5 +189,3 @@ def logout():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5003, debug=True)
-
-
