@@ -40,6 +40,11 @@ def getItem(email,pid):
     item = db.fetchall()
     return item
 
+def getAllItems(searchbox,user):
+    db.execute("SELECT itemname,id,itemdesc FROM items WHERE email=(?) AND itemname LIKE '%{}%' ORDER BY itemname".format(searchbox),(user,))
+    itemList = db.fetchall()
+    return itemList
+
 def getImage(pid):
     db.execute("SELECT img FROM items WHERE id=(?)",(pid,))
     image = db.fetchall()

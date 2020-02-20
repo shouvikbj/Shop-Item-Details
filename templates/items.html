@@ -75,6 +75,18 @@
             padding: 10px;
             background-color: rgba(137, 43, 226, 0.123);
         }
+        #searchBtn{
+            text-decoration: none;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+            height: 40px;
+            width: 40px;
+            border: none;
+            box-shadow: 0px 0px 5px 0px slategray;
+            background-color: snow;
+            float: right;
+        }
     </style>
     <script>
         $(document).ready(function(){
@@ -113,6 +125,10 @@
                     <h4 id="heading-text">Product Stocks</h4>
                 </div>
                 <hr>
+                <div id="search">
+                    <a href="/searchItem"><button id="searchBtn"><i class="fas fa-search" style="color: black;"></i></button></a>
+                </div>
+                <br><br><br>
                 {% if (item|length) %}
                     {% for i in range(item|length) | reverse %}
                     <div align="center">

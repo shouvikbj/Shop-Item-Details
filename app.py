@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request,url_for,session,flash
+from flask import Flask,render_template,redirect,request,url_for,session,flash,jsonify
 import os
 import shopDB as sd
 import itemDB as idb
@@ -18,6 +18,31 @@ def index():
         return render_template('index.html', shop=shop)
     else:
         return redirect(url_for('login'))
+
+
+
+@app.route("/searchItem")
+def searchUser():
+    if 'email' in session:
+        return render_template("searchItem.html")
+    else:
+        return redirect(url_for('login'))
+
+@app.route("/livesearch",methods=["POST","GET"])
+def livesearch():
+    if 'email' in session:
+        user = session['email']
+        searchbox = request.form.get("text")
+        itemList = idb.getAllItems(searchbox,user)
+        #print(itemList)
+        return jsonify(itemList)
+    else:
+        return redirect(url_for('login'))
+
+
+
+
+
 
 @app.route('/login')
 def login():
