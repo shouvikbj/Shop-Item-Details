@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="manifest" href="/manifest.json">
-    <title>Admin-login</title>
+    <title>Add Item</title>
     <script>
         if (location.hostname === 'shoptracker.herokuapp.com' && location.protocol !== 'https:') {
             location.href = location.href.replace('http:','https:')
@@ -93,6 +93,19 @@
         #desc{
             font-size: 125%;
         }
+        #userlist1{
+            color: black;
+            font-weight: bold;
+            background-color: rgba(222, 184, 135, 0.664);
+            padding: 10px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+        ul{
+            list-style-type: none;
+        }
+
     </style>
     <script>
         $(document).ready(function(){
@@ -125,7 +138,8 @@
                 <div id="login-details" align="center">
                     <form action="/additem" method="post" enctype="multipart/form-data">
                         <h5 id="desc" style="color: rgba(105, 90, 205, 0.842);">Product Name</h5>
-                        <input type="text" name="itemname" id="itemname" placeholder="Product Name" required="true"><br><br>
+                        <input type="text" name="itemname" id="itemname" placeholder="Product Name" required="true" autocomplete="off"><br><br>
+                        <p id="userlist"></p>
                         <h5 id="desc" style="color: rgba(105, 90, 205, 0.842);">Product Description</h5>
                         <input type="text" name="itemdesc" id="itemdesc" placeholder="Product Description" required="true"><br><br>
                         <h5 id="desc" style="color: rgba(105, 90, 205, 0.842);">Number of Units</h5>
@@ -161,4 +175,33 @@
     <button id="scroll-top"><a href="#to-top"><i class="fas fa-arrow-up" style="font-size:24px;color: rgb(255, 251, 0);"></i></a></button>
     <script src="/app.js"></script>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $("#itemname").on("input", function (e) {
+            //textinsearchbox = $("#livesearch").val();
+            $("#userlist").empty();
+            $.ajax({
+                method: "post",
+                url: "/livesearch",
+                data: { text: $("#itemname").val() },
+                success: function (res) {
+                    var data = "<ul>";
+                    $.each(res, function (index, value) {
+                        data += "<a href=\"/item/" + value[1] + "\">" + "<li id=\"userlist1\">"+ value[0] + "<br>(" + value[2] + ")<br>[ View Product ]</li>" + "</a>" + "<br>"
+                    });
+                    data += "</ul><hr>";
+                    $("#userlist").html(data);
+                    //$("#userlist").empty();
+                    if ($("#itemname").val() == "") {
+                        $("#userlist").empty();
+                    }
+                }
+            })
+        });
+    })
+</script>
+
+
+
 </html>
