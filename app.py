@@ -132,6 +132,14 @@ def item(pid):
     else:
         return redirect(url_for('login'))
 
+@app.route('/item/<int:pid>/delete')
+def deleteItem(pid):
+    if 'email' in session:
+        idb.deleteItem(pid)
+        return redirect(url_for('items'))
+    else:
+        return redirect(url_for('login'))
+
 @app.route('/item/<int:pid>/update')
 def update(pid):
     if 'email' in session:

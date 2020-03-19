@@ -55,6 +55,9 @@ def updateItem(email,itemname,itemdesc,units,mrp,awaycost,awaypktcost,localcost,
     db.execute("INSERT INTO itemsBackUp VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?)",(email,itemname,itemdesc,units,mrp,awaycost,awaypktcost,localcost,localpktcost,date,img))
     con.commit()
 
+def deleteItem(pid):
+    db.execute("DELETE FROM items WHERE id=(?)",(pid,))
+    con.commit()
 
 
 
